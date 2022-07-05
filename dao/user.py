@@ -13,7 +13,7 @@ class UserDAO:
         return self.session.query(User).all()
 
     def get_by_username(self, username):
-        return self.session.filter(User.username == username).one()
+        return self.session.query(User).filter(User.username == username).first()
 
     def create(self, user_data):
         ent = User(**user_data)

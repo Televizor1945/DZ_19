@@ -25,7 +25,8 @@ def admin_requered(func):
         if "Authorization" not in request.headers:
             abort(401)
 
-        token = request.headers["Authorization"]
+        data_for_token = request.headers["Authorization"]
+        token = data_for_token.split("Bearer")[-1]
 
         try:
             data = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALG])
